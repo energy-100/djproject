@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>远程工作日志填写</title>
+</head>
+<body>
+    <center>
+        <form action="savedata/" method="post">
+            <span>用户名:<input type="text" name="username" value={{ name }}></span>
+            <br>
+            <span>中心:<input type="text" name="center" value={{ center }}></span>
+            <br>
+            <span>项目名称:<input type="text" name="project" value={{ project }}></span>
+            <br>
+            <span>
+                今日完成工作
+            </span>
+            <br>
+            <span>
+                <textarea id="todaywork" name="todaywork" rows="4" cols="200"  placeholder="多行文本框">
+                    {{ data1 }}
+                </textarea>
+            </span>
+            <br>
+            <span>
+                待解决问题
+            </span>
+            <br>
+            <span>
+                <textarea id="todayproblems" name="todayproblems" rows="4" cols="200" placeholder="多行文本框">
+                    {{ data2 }}
+                </textarea>
+            </span>
+            <br>
+            <span>
+                明日工作计划
+            </span>
+            <br>
+            <span>
+                <textarea id="tomorrowwork" name="tomorrowwork" rows="4" cols="200" placeholder="多行文本框">
+                    {{ data3 }}
+                </textarea>
+            </span>
+            <br>
+            <span>
+                <input type="submit" name="submit1" value="提交">
+            </span>
+
+        </form>
+    </center>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改日志数据</title>
+
+</head>
+<body>
+<center>
+    <form action="/showdlldata/" method="POST"></form>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>用户名</th>
+            <th>中心</th>
+            <th>项目</th>
+            <th>今日完成的工作</th>
+            <th>待解决的问题</th>
+            <th>明日工作计划</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td> <input type="text"  name="data1" value="{{ row.0 }}" /> </td>
+                <td> <input type="text"  name="data2" value="{{ row.1 }}" /> </td>
+                <td> <input type="text"  name="data3" value="{{ row.2 }}" /> </td>
+                <td> <input type="text"  name="data4" value="{{ row.3 }}" /> </td>
+                <td> <input type="text"  name="data5" value="{{ row.4 }}" /> </td>
+                <td> <input type="text"  name="data6" value="{{ row.5 }}" /> </td>
+            </tr>
+        </tbody>
+    </table>
+    <input type="text" value="提交">
+</center>
+
+</body>
+</html>

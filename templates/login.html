@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>远程办公日志提交系统</title>
+</head>
+<body>
+    <center>
+        <form method="POST", action="/login/">
+            <h1>用户登录</h1>
+            <span>
+                用户:<input type="text" name="username">
+            </span>
+            <br>
+            <span>
+                密码:<input type="password" name="password">
+            </span>
+            <br>
+            <span>
+                <input type="submit" name="submit1" value="登录">
+            </span>
+            <span>
+                <input type="button" value="注册" onclick="javascrtpt:window.location.href='/register/'" />
+            </span>
+            <br>
+            <span>
+                <font color="red">{{ message }}</font>
+            </span>
+        </form>
+    </center>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全部日志数据</title>
+
+</head>
+<body>
+<center>
+    <span><h1>{{ time }}</h1></span>
+
+    <table border="1">
+        <thead>
+        <tr>
+            <th>用户名</th>
+            <th>中心</th>
+            <th>项目</th>
+            <th>今日完成的工作</th>
+            <th>待解决的问题</th>
+            <th>明日工作计划</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for row in data %}
+            <tr>
+                {% for elem in row %}
+                    <td> {{ elem }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</center>
+
+</body>
+</html>
