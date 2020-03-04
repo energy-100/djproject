@@ -33,6 +33,7 @@ urlpatterns = [
     # path('register/query',views.query),  #输入用户名密码后交给后台query函数处理
     path('login/savedata/',views.savedata), #输入用户名密码后交给后台query函数处理
     path('showdata/',views.group),  #输入用户名密码后交给后台query函数处理
-    path('addelem/',views.addelem)  #输入用户名密码后交给后台query函数处理
-
+    path('addelem/',views.addelem),  #输入用户名密码后交给后台query函数处理
+    path('addelem2/',views.addelem2)  #输入用户名密码后交给后台query函数处理
+    
 ]

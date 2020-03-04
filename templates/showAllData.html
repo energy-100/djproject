@@ -3,9 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>全部日志数据</title>
+    <style>
+        .hide{
+           display: none;
+        }
+        .shadow{
+            position: fixed;
+            right: 0;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            background: black;
+            opacity: 0.4;
+            z-index: 1;
+        }
+        .modal{
+            z-index: 1;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            width: 400px;
+            height: 200px;
+            background: white;
+            margin-left: -200px;
+            margin-top: -150px;
 
+
+
+        }
+
+
+    </style>
 </head>
 <body>
+
 <center>
     <span><h1>{{ time }}</h1></span>
 
@@ -32,7 +63,51 @@
 
         </tbody>
     </table>
+    <a onclick="showModal()">添加数据</a>
 </center>
+<div  id="shadow" class="shadow hide"></div>
+<div id="modal" class="modal hide">
+    <form method="POST" action="/addelem2/">
+        <p>
+            <center>
+                <input id="title" type="text" name="title">
+                <input type="button" value="提交"  onclick="AjaxSend()">
+                <br>
+                <span id="errormassage"></span>
+            </center>
+        </p>
+    </form>
+</div>
 
+<div>
+    <script src="/static/jquery-3.4.1.js"></script>
+    <script>
+        function showModal() {
+            document.getElementById('shadow').classList.remove('hide')
+            document.getElementById('modal').classList.remove('hide')
+        }
+        function AjaxSend(){
+            $.ajax({
+                url: "/addelem2/",
+                type : "POST",
+                data : {'title': $('#title').val()},
+                success:function (data) {
+                    // 当服务端处理完后自动执行此函数
+                    if (data=="ok"){
+                        alert("添加成功")
+                    }
+                    else{
+                        alert("添加失败")
+                        $('#errormassage').text(data)
+                    }
+                    console.log(data)
+                }
+            })
+
+
+        }
+    </script>
+    
+</div>
 </body>
 </html>

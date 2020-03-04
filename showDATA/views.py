@@ -4,12 +4,14 @@ import datetime
 
 import pymysql
 from django.shortcuts import render, redirect
-
 import datetime
 import re
 import pymysql
 from django.contrib import admin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from django.shortcuts import HttpResponse
+
 
 def login(request):
     if request.method=="GET":
@@ -132,6 +134,15 @@ def addelem(request):
         data5=request.POST.get("tomorrowwork")
         #下一步写入数据库并返回成功页面
         return redirect("/showdata/")
+
+def addelem2(request):
+    title=request.POST.get("title")
+    print("title",title)
+    #执行SQL语句
+    if title:
+        return HttpResponse("ok")
+    else:
+        return HttpResponse("不能为空！")
 
 def delelem(request):
     name=request.POST.get("name")
