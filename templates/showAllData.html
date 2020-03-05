@@ -71,8 +71,9 @@
         <p>
             <center>
                 <input id="title" type="text" name="title">
-                <input type="button" value="提交"  onclick="AjaxSend()">
                 <br>
+                <input type="button" value="提交"  onclick="AjaxSend()">
+                <input type="button" value="取消"  onclick="cancleModal()">
                 <span id="errormassage"></span>
             </center>
         </p>
@@ -85,6 +86,10 @@
         function showModal() {
             document.getElementById('shadow').classList.remove('hide')
             document.getElementById('modal').classList.remove('hide')
+        }
+        function cancleModal() {
+            document.getElementById('shadow').classList.add('hide')
+            document.getElementById('modal').classList.add('hide')
         }
         function AjaxSend(){
             $.ajax({
