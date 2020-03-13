@@ -23,10 +23,10 @@
             left: 50%;
             top: 50%;
             width: 400px;
-            height: 200px;
+            height: 400px;
             background: white;
             margin-left: -200px;
-            margin-top: -150px;
+            margin-top: -200px;
         }
 
 
@@ -36,16 +36,15 @@
 
 <center>
     <span><h1>{{ time }}</h1></span>
-
+    <br>
+    <a id="newbox" onclick="adddialogbox()">对话框添加</a>
     <table border="1">
         <thead>
         <tr>
             <th>用户名</th>
+            <th>密码</th>
             <th>中心</th>
             <th>项目</th>
-            <th>今日完成的工作</th>
-            <th>待解决的问题</th>
-            <th>明日工作计划</th>
             <th>编辑</th>
             <th>删除</th>
         </tr>
@@ -85,16 +84,26 @@
     <form method="POST" action="/addelem2/">
         <p>
             <center>
-                <a>编辑数据</a>
+                <h3>修改用户数据</h3>
                 <br>
-                <a >今日完成的工作</a>
-                <input id="data1" type="text" name="title">
-                <br>
-                <a >待解决的问题</a>
-                <input id="data2" type="text" name="title">
-                <br>
-                <a >明日工作计划</a>
-                <input id="data3" type="text" name="title">
+                <table>
+                    <tr>
+                        <td><a >用户名</a></td>
+                        <td><input id="data1" type="text" name="title"></td>
+                    </tr>
+                    <tr>
+                        <td><a >密码</a></td>
+                        <td><input id="data2" type="text" name="title"></td>
+                    </tr>
+                    <tr>
+                        <td><a >中心</a></td>
+                        <td><input id="data3" type="text" name="title"></td>
+                    </tr>
+                    <tr>
+                        <td><a >项目</a></td>
+                        <td><input id="data4" type="text" name="title"></td>
+                    </tr>
+                </table>
                 <br>
                 <input type="button" value="提交"  onclick="editAjaxSend()">
                 <input type="button" value="取消"  onclick="editModalcancle()">
@@ -112,10 +121,11 @@
             document.getElementById('editModel').classList.remove('hide');
             data=$(ths).parent().prevAll();
             // console.log(data);
-            console.log($(data[2]).text());
-            $('#data1').val($(data[2]).text());
-            $('#data2').val($(data[1]).text());
-            $('#data3').val($(data[0]).text());
+            console.log($(data[3]).text());
+            $('#data1').val($(data[3]).text());
+            $('#data2').val($(data[2]).text());
+            $('#data3').val($(data[1]).text());
+            $('#data4').val($(data[0]).text());
         }
         function Modalshow() {
             document.getElementById('shadow').classList.remove('hide');
@@ -161,7 +171,7 @@
                 type : "POST",
                 data : {'data1': $('#data1').val(),'data2': $('#data2').val(),'data3': $('#data3').val()},
                 success:function (arg) {
-                    arg=JSON.parse(arg);
+                    arg=JSON.parse(arg);//反序列化
                     // 当服务端处理完后自动执行此函数
                     if (arg.status){
                         alert("修改成功！")
@@ -181,8 +191,17 @@
 
 
         }
+
+
+
+
+        $(function() {
+            $("#newbox").click(function(){
+                alert("1234");
+            })
+        })
     </script>
-    
+
 </div>
 </body>
 </html>

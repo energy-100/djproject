@@ -11,7 +11,7 @@ from django.contrib import admin
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.shortcuts import HttpResponse
-
+import json
 
 def login(request):
     if request.method=="GET":
@@ -111,13 +111,47 @@ def group(request):
         db.autocommit(True) #自动提交
         cursor = db.cursor()
         # cursor = db.cursor(sursor=pymysql.cursors.DictCursor)
-        sql = 'select * from {table}'.format(table=today)
+        tablename = "table"+datetime.date.today().strftime('%y%m%d')
+        #查询当日数据表是否存在
+        sql = "show tables;"
+        cursor.execute(sql)  # 执行sql语句
+        tables = [cursor.fetchall()]  # 返回所有结果
+        table_list = re.findall('(\'.*?\')', str(tables))
+        table_list = [re.sub("'", '', each) for each in table_list]
+        if tablename in table_list:
+            sql = 'select * from {table}'.format(table=today)
+            cursor.execute(sql)
+            userdata = cursor.fetchall()
+            cursor.close()
+            db.close()
+            print(userdata)
+            return render(request,"showAllData.html",{"data":userdata,"time":datetime.date.today().strftime('%y%m%d')})
+        else:
+            userdata=''
+            cursor.close()
+            db.close()
+            return render(request, "showAllData.html",{"time": datetime.date.today().strftime('%y%m%d')})
+
+
+    # method==POST
+    else:
+        pass
+
+def showuser(request):
+    if request.method=="GET":
+        db = pymysql.connect("47.105.38.117", "root", "1234", "long_distance_data", port=3306, charset='utf8')
+        db.autocommit(True) #自动提交
+        cursor = db.cursor()
+        sql = 'select * from {table}'.format(table="userdata")
         cursor.execute(sql)
         userdata = cursor.fetchall()
         cursor.close()
         db.close()
         print(userdata)
-        return render(request,"showAllData.html",{"data":userdata,"time":datetime.date.today().strftime('%y%m%d')})
+        return render(request,"showuser.html",{"data":userdata,"time":datetime.date.today().strftime('%y%m%d')})
+
+
+
     # method==POST
     else:
         pass
@@ -143,6 +177,24 @@ def addelem2(request):
         return HttpResponse("ok")
     else:
         return HttpResponse("不能为空！")
+
+def editelem2(request):
+    data1=request.POST.get("data1")
+    data2=request.POST.get("data2")
+    data3=request.POST.get("data3")
+    sta={"status":True,"message":None}
+
+
+    if (data1 and data2 and data3):
+        try:
+            #执行SQL语句
+            pass
+        except Exception as error:
+            sta[message]=error
+        return HttpResponse(json.dumps(sta))
+    else:
+        return HttpResponse("不能为空！")
+
 
 def delelem(request):
     name=request.POST.get("name")
