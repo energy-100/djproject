@@ -362,3 +362,5 @@ def savedata(request):
     #     cursor.close()
     #     db.close()
     #     return HttpResponse('该账号已存在')
+def test(request):
+    return render(request, 'test.html')

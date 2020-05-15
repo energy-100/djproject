@@ -1,8 +1,19 @@
+{% load static %}
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>全部日志数据</title>
+<!--    <script src="/static/jquery-3.4.1.js"></script>-->
+<!--    <script src="/static/plugins/bootstrap-3.3.7-dist/css/bootstrap.css" type="application/javascript"></script>-->
+    <link  href="{% static 'plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}" rel="stylesheet">
+<!--    <link  href="/static/plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">-->
+
+<!--    <link rel="stylesheet" href="/sta"/>-->
+<!--    <link rel="stylesheet" href="/static/plugins/bootstrap-3.3.7-dist/css/bootstrap-theme.css"/>-->
+// <!--    <link rel="stylesheet" href="/static/plugins/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">-->
+
     <style>
         .hide{
            display: none;
@@ -35,9 +46,12 @@
 <body>
 
 <center>
+<!--    <script src="https://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>-->
+    <script src="{% static 'jquery-3.4.1.js' %}"></script>
+<!--    <script src="/static/jquery-3.4.1.js"></script>-->
     <span><h1>{{ time }}</h1></span>
 
-    <table border="1">
+    <table class="table">
         <thead>
         <tr>
             <th>用户名</th>
@@ -80,7 +94,10 @@
         </p>
     </form>
 </div>
-
+<div>
+<!--<img src="/static/55.jpg" width="165" height="60" />-->
+<img src="{% static '/55.jpg' %}" />
+</div>
 <div id="editModel" class="model hide">
     <form method="POST" action="/addelem2/">
         <p>
@@ -105,7 +122,9 @@
 </div>
 
 <div>
-    <script src="/static/jquery-3.4.1.js"></script>
+    <script src="{% static 'jquery-3.4.1.js' %}"></script>
+
+<!--    <script src="https://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>-->
     <script>
         function Modeledit(ths){
             document.getElementById('shadow').classList.remove('hide');
